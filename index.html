@@ -16,15 +16,18 @@
         border: 1px solid #777bad;
     }
 
-    #catContainer img {
-        object-fit: contain;
+    .image-wrapper img {
         width: 100%;
         height: 100%;
+        max-width: 480px;
+        max-height: 480px;
+        object-fit: contain;
     }
+
 </style>
 <body>
     <div class="container">
-         <div class="px-4 py-5 my-5 text-center">
+        <div class="px-4 py-5 my-5 text-center">
             <h1 class="display-5 fw-bold">Heeeej</h1>
             <div class="col-lg-6 mx-auto">
               <p class="lead mb-4">Kliknij sobie przycisk po losowego kotka </p>
@@ -33,40 +36,28 @@
               </div>
             </div>
           </div>
-
-            <div class="row justify-content-center align-items-center">
-                <div class="image-wrapper d-flex justify-content-center align-items-center">
-                    <img class="w-100" id="catContainer" src="./kebab.png" alt="">
-                </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="image-wrapper d-flex justify-content-center align-items-center px-2 py-2">
+                <img class="img-fluid" id="mainImage" src="./kebab.png" alt="">
             </div>
+        </div>
     </div>
 </body>
 
 <script>
 
-const catContainer = document.querySelector('#catContainer');
-
-
-
-
-
+const catContainer = document.querySelector('#mainImage');
 
 function fetchCat() {
     fetch('https://api.thecatapi.com/v1/images/search')
         .then(response => response.json())
         .then(data => {
-            // console.log(data[0].url) 
             catUrl = data[0].url;
-
-            
-            console.log(catUrl);
-
             catContainer.src = catUrl;
         });
 }
-
-
-
 </script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
